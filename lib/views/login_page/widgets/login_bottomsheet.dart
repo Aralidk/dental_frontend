@@ -1,5 +1,7 @@
+import 'package:dental_workflow/styles/button_styles.dart';
 import 'package:dental_workflow/widgets/bottom_sheet_pointer.dart';
 import 'package:flutter/material.dart';
+import 'package:routemaster/routemaster.dart';
 import '../../../constants/colors.dart';
 
 TextEditingController numberController = TextEditingController();
@@ -55,7 +57,10 @@ class LoginBottomSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0),
                 )
             ),
-          )
+          ),
+          TextButton(onPressed: (){
+            Routemaster.of(context).push("/homePage");
+          }, style: blueButton, child: const Text("Kaydet", style: TextStyle(color: Colors.white)))
         ],
       ),
     );
