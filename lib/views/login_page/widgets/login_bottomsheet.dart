@@ -1,10 +1,12 @@
+import 'package:dental_workflow/providers/app_state_provider.dart';
 import 'package:dental_workflow/styles/button_styles.dart';
 import 'package:dental_workflow/widgets/bottom_sheet_pointer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import '../../../constants/colors.dart';
 
-TextEditingController numberController = TextEditingController();
+TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 
 class LoginBottomSheet extends StatelessWidget {
@@ -20,26 +22,22 @@ class LoginBottomSheet extends StatelessWidget {
           const BottomSheetPointer(),
           const SizedBox(height: 15.0),
           TextField(
-            onChanged: (value){},
-            controller: numberController,
+            onChanged: (value) {},
+            controller: emailController,
             textAlign: TextAlign.center,
             decoration: InputDecoration(
-                label: const Text("Telefon Numarası"),
-                hintText: "5xx xxx xxxx",
+                label: const Text("E-posta"),
+                hintText: "xxxxx@gmail.com",
                 contentPadding: const EdgeInsets.all(10.0),
                 alignLabelWithHint: true,
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: skyBlue,
-                      width: 1.0
-                  ),
+                  borderSide: BorderSide(color: skyBlue, width: 1.0),
                   borderRadius: BorderRadius.circular(18.0),
-                )
-            ),
+                )),
           ),
           const SizedBox(height: 15.0),
           TextField(
-            onChanged: (value){},
+            onChanged: (value) {},
             controller: passwordController,
             textAlign: TextAlign.center,
             maxLength: 10,
@@ -50,17 +48,27 @@ class LoginBottomSheet extends StatelessWidget {
                 contentPadding: const EdgeInsets.all(10.0),
                 alignLabelWithHint: true,
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: skyBlue,
-                      width: 1.0
-                  ),
+                  borderSide: BorderSide(color: skyBlue, width: 1.0),
                   borderRadius: BorderRadius.circular(18.0),
-                )
-            ),
+                )),
           ),
-          TextButton(onPressed: (){
-            Routemaster.of(context).push("/homePage");
-          }, style: blueButton, child: const Text("Kaydet", style: TextStyle(color: Colors.white)))
+          TextButton(
+              onPressed: () {
+                Provider.of<AppStateProvider>(context, listen: false)
+                    .userLog(emailController.text, passwordController.text)
+                    .then(((response) {
+                  if (response) {
+                    Routemaster.of(context).push("/homePage");
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                            "Hatalı giriş yaptınız, bilgilerinizi tekrar kontrol ediniz.")));
+                  }
+                }));
+              },
+              style: blueButton,
+              child:
+                  const Text("Kaydet", style: TextStyle(color: Colors.white)))
         ],
       ),
     );

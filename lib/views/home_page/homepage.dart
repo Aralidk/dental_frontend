@@ -9,18 +9,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text("anasayfa"),
-        TextButton(
-            onPressed: () {
-              Routemaster.of(context).push("/createWork");
-            },
-            style: blueButton,
-            child:
-                const Text("İş Kayıt", style: TextStyle(color: Colors.white)))
+          TextButton(
+              onPressed: () {
+                Routemaster.of(context).push("/createWork");
+              },
+              style: blueButton,
+              child:
+                  const Text("İş Kayıt", style: TextStyle(color: Colors.white)))
       ],
-    ));
+    ),
+        ));
   }
 }
