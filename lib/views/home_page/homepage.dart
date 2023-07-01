@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
-
 import '../../styles/button_styles.dart';
 
 class HomePage extends StatelessWidget {
