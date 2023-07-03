@@ -1,3 +1,5 @@
+import 'package:dental_workflow/models/http_response_model.dart';
+import 'package:dental_workflow/views/create_work_page/widgets/bridge.dart';
 import 'package:dental_workflow/views/create_work_page/widgets/creatework_header.dart';
 import 'package:dental_workflow/views/create_work_page/widgets/emax.dart';
 import 'package:dental_workflow/views/create_work_page/widgets/metal_feature.dart';
@@ -29,11 +31,12 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
             const TeethSelection(),
             const MetalTile(),
             const Zirkon(),
+            const Bridge(),
             const EMax(),
             const Protez(),
             const NightPlaque(),
             const Temprory(),
-            DentalTextfield(label: "Müşteri Notu Notu"),
+            DentalTextfield(label: "Müşteri Notu"),
             DentalTextfield(label: "Lab Notu")
           ],
         ),

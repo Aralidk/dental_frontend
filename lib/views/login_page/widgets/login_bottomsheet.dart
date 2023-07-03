@@ -60,6 +60,7 @@ class LoginBottomSheet extends StatelessWidget {
                   if (response) {
                     Routemaster.of(context).push("/homePage");
                   } else {
+                    Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text(
                             "Hatalı giriş yaptınız, bilgilerinizi tekrar kontrol ediniz.")));
