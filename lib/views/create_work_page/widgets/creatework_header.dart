@@ -1,5 +1,6 @@
+import 'package:dental_workflow/providers/app_state_provider.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../../../constants/colors.dart';
 
 class CreateWorkHeader extends StatelessWidget {
@@ -20,7 +21,9 @@ class CreateWorkHeader extends StatelessWidget {
                   color: salmonPink,
                   width: 1,
                 )),
-            child: const Text("Müşteri Adı")),
+            child: Text(
+                "${Provider.of<AppStateProvider>(context, listen: false).user?.firstName} ${Provider.of<AppStateProvider>(context, listen: false).user?.lastName}" ??
+                    "")),
         Container(
             padding: const EdgeInsets.all(14.0),
             decoration: BoxDecoration(
@@ -29,7 +32,10 @@ class CreateWorkHeader extends StatelessWidget {
                   color: darkBlue,
                   width: 1,
                 )),
-            child: const Text("Müşteri Numarası")),
+            child: Text(Provider.of<AppStateProvider>(context, listen: false)
+                .user!
+                .id
+                .toString())),
       ],
     );
   }
