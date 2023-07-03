@@ -9,8 +9,8 @@ class Bridge extends StatelessWidget {
     return  ListTile(
       leading: Checkbox(
         value: false,
-        checkColor: salmonPink,
-        fillColor: MaterialStateProperty.all(salmonPink),
+        checkColor: dentalBlue,
+        fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {},
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),

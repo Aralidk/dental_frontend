@@ -10,8 +10,8 @@ class NightPlaque extends StatelessWidget {
     return  ExpansionTile(
       leading: Checkbox(
         value: false,
-        checkColor: salmonPink,
-        fillColor: MaterialStateProperty.all(salmonPink),
+        checkColor: dentalBlue,
+        fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {},
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
@@ -22,7 +22,7 @@ class NightPlaque extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(
-                  color: salmonPink,
+                  color: dentalBlue,
                   width: 1
               )
           ),
@@ -30,8 +30,8 @@ class NightPlaque extends StatelessWidget {
             children: [
               Expanded(
                 child: CheckboxListTile(
-                  activeColor: salmonPink,
-                  checkColor: salmonPink,
+                  activeColor: dentalBlue,
+                  checkColor: dentalBlue,
                   checkboxShape:
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                   value: false, onChanged: (val){
@@ -41,8 +41,8 @@ class NightPlaque extends StatelessWidget {
               ),
               Expanded(
                 child: CheckboxListTile(value: false,
-                  activeColor: salmonPink,
-                  checkColor: salmonPink,
+                  activeColor: dentalBlue,
+                  checkColor: dentalBlue,
                   checkboxShape:
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                   onChanged: (val){

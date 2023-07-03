@@ -19,8 +19,8 @@ class _ProtezState extends State<Protez> {
     return ExpansionTile(
       leading: Checkbox(
         value: false,
-        checkColor: salmonPink,
-        fillColor: MaterialStateProperty.all(salmonPink),
+        checkColor: dentalBlue,
+        fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {},
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
@@ -28,13 +28,13 @@ class _ProtezState extends State<Protez> {
       children: [
         CheckboxListTile(
           value: isRepair,
-          activeColor: salmonPink,
+          activeColor: dentalBlue,
           onChanged: (val) {
             setState(() {
               isRepair = val!;
             });
           },
-          checkColor: salmonPink,
+          checkColor: dentalBlue,
           checkboxShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           title: const Text("Tamir"),
@@ -46,16 +46,16 @@ class _ProtezState extends State<Protez> {
               CheckboxListTile(value: false, onChanged: (val){
               },
                 title: const Text("Kroşe İlave"),
-                activeColor: salmonPink,
-                checkColor: salmonPink,
+                activeColor: dentalBlue,
+                checkColor: dentalBlue,
                 checkboxShape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               ),
               CheckboxListTile(value: false, onChanged: (val){
               },
                 title: const Text("Diş İlave"),
-                activeColor: salmonPink,
-                checkColor: salmonPink,
+                activeColor: dentalBlue,
+                checkColor: dentalBlue,
                 checkboxShape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               )
@@ -76,7 +76,7 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )
@@ -122,7 +122,7 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )
@@ -134,7 +134,7 @@ class _ProtezState extends State<Protez> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
-                        color: salmonPink,
+                        color: dentalBlue,
                         width: 1
                     )
                 ),
@@ -142,8 +142,8 @@ class _ProtezState extends State<Protez> {
                   children: [
                     Expanded(
                       child: CheckboxListTile(
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         value: false, onChanged: (val){
@@ -153,8 +153,8 @@ class _ProtezState extends State<Protez> {
                     ),
                     Expanded(
                       child: CheckboxListTile(value: false,
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         onChanged: (val){
@@ -171,7 +171,7 @@ class _ProtezState extends State<Protez> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
-                        color: salmonPink,
+                        color: dentalBlue,
                         width: 1
                     )
                 ),
@@ -179,8 +179,8 @@ class _ProtezState extends State<Protez> {
                   children: [
                     Expanded(
                       child: CheckboxListTile(
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         value: false, onChanged: (val){
@@ -190,8 +190,8 @@ class _ProtezState extends State<Protez> {
                     ),
                     Expanded(
                       child: CheckboxListTile(value: false,
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         onChanged: (val){
@@ -212,7 +212,7 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )
@@ -228,7 +228,7 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )

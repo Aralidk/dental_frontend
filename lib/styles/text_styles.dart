@@ -11,7 +11,14 @@ TextStyle buttonText = const TextStyle(
 
 TextStyle labelStyle =  TextStyle(
     color: skyBlue,
-    fontSize: 20,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    fontFamily: "Poppins"
+);
+
+TextStyle generalText =  TextStyle(
+    color: darkBlue,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     fontFamily: "Poppins"
 );

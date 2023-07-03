@@ -1,55 +1,45 @@
+
+import 'package:dental_workflow/providers/work_provider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
 
-class MetalTile extends StatefulWidget {
-  const MetalTile({Key? key}) : super(key: key);
+class MetalTile extends StatelessWidget {
+  MetalTile({Key? key, required this.provider}) : super(key: key);
+  WorkProvider provider;
 
-  @override
-  State<MetalTile> createState() => _MetalTileState();
-}
-
-class _MetalTileState extends State<MetalTile> {
-  bool implantAbove = false;
-  bool metalProofing = false;
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       leading: Checkbox(
-        value: implantAbove,
-        checkColor: salmonPink,
-        fillColor: MaterialStateProperty.all(salmonPink),
+        value: provider.selectedEntities?.isMetal ?? false,
+        checkColor: dentalBlue,
+        fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {
-          setState(() {
-            implantAbove = val!;
-          });
+          provider.selectedWorkModelMetalUpdate(isMetal: val);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
       title: const Text("Metal"),
       children: [
         CheckboxListTile(
-          value: implantAbove,
-          activeColor: salmonPink,
+          value: provider.selectedEntities?.isMetalAbove ?? false,
+          activeColor: dentalBlue,
           onChanged: (val) {
-            setState(() {
-              implantAbove = val!;
-            });
+            provider.selectedWorkModelMetalUpdate(isMetalAbove: val, isMetal: provider.selectedEntities?.isMetal, isMetalProva:provider.selectedEntities?.isMetalProva  );
           },
-          checkColor: salmonPink,
+          checkColor: dentalBlue,
           checkboxShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           title: const Text("İmplant Üstü"),
         ),
         CheckboxListTile(
-          value: metalProofing,
-          activeColor: salmonPink,
+          value: provider.selectedEntities?.isMetalProva ?? false,
+          activeColor: dentalBlue,
           onChanged: (val) {
-            setState(() {
-              metalProofing = val!;
-            });
+            provider.selectedWorkModelMetalUpdate(isMetalAbove:  provider.selectedEntities?.isMetalAbove, isMetal: provider.selectedEntities?.isMetal, isMetalProva: val);
           },
-          checkColor: salmonPink,
+          checkColor: dentalBlue,
           checkboxShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           title: const Text("Metal Prova Gelsin"),
