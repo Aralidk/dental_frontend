@@ -4,14 +4,14 @@ import '../models/work_model.dart';
 
 class WorkProvider extends ChangeNotifier {
   List<WorkModel> workModels = [];
-  int? selectedTeethNumber;
-  WorkEntities? selectedEntities;
+  List<int> selectedTeethNumbers = [];
+  List<WorkEntities> selectedEntities = [];
 
   addToModel(WorkModel model) {
-    if (!workModels.contains(model)) {
+    if (!workModels.contains(model) && workModels.where((element) => element.workEntities == model.workEntities).isEmpty) {
       workModels.add(model);
+
     }
-    print(model.workEntities![0].teethNumber);
     notifyListeners();
   }
 
@@ -21,89 +21,75 @@ class WorkProvider extends ChangeNotifier {
   }
 
   clearTeethNumber() {
-    selectedTeethNumber = null;
+    selectedTeethNumbers.clear();
     notifyListeners();
   }
 
   selectTeethNumber(int teethNumber, WorkEntities entities) {
-    selectedTeethNumber = teethNumber;
-    selectedEntities = entities;
+    selectedTeethNumbers.add(teethNumber);
+    selectedEntities.add(entities);
+    print(selectedEntities);
     notifyListeners();
   }
 
   selectedWorkModelMetalUpdate(
-      {bool? isMetal, bool? isMetalAbove, bool? isMetalProva}
-      // bool? isBridge,
-      // bool? isEMax,
-      // bool? isTemp,
-      // bool? isNigthPlaque,
-      // bool? isHard,
-      // bool? isProtez,
-      // int? slideAmount,
-      // int? kronAmount,
-      // bool? isRepair,
-      // bool? isSetBottom,
-      // bool? isCageBottom,
-      // String? doldarBar,
-      // String? doldarFoot
+      {List<int>? teethNumbers,bool? isMetal, bool? isMetalAbove, bool? isMetalProva}
       ) {
-    // workModels
-    //     .where((element) => element.workEntities!
-    //         .any((val) => val.teethNumber == selectedTeethNumber))
-    //     .first
-    //     .workEntities!
-    //     .first
-    //     .isMetal = isMetal;
-    // workModels
-    //     .where((element) => element.workEntities!
-    //         .any((val) => val.teethNumber == selectedTeethNumber))
-    //     .first
-    //     .workEntities!
-    //     .first
-    //     .isMetalProva = isMetalProva;
-    // workModels
-    //     .where((element) => element.workEntities!
-    //         .any((val) => val.teethNumber == selectedTeethNumber))
-    //     .first
-    //     .workEntities!
-    //     .first
-    //     .isMetalAbove = isMetalAbove;
-    selectedEntities!.isMetal = isMetal;
-    selectedEntities!.isMetalProva = isMetalProva;
-    selectedEntities!.isMetalAbove = isMetalAbove;
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isMetal = isMetal;
+      selectedEntities[i].isMetalProva = isMetalProva;
+      selectedEntities[i].isMetalAbove = isMetalAbove;
+    }
     notifyListeners();
   }
 
   selectedWorkModelZirkonUpdate(
-  {bool? isZirkon, bool? isZirkonAbove, bool? isZirkonProva}) {
-    selectedEntities!.isZirkon = isZirkon;
-    selectedEntities!.isZirkonProva = isZirkonProva;
-    selectedEntities!.isZirkonAbove = isZirkonAbove;
+  {List<int>? teethNumbers, bool? isZirkon, bool? isZirkonAbove, bool? isZirkonProva}) {
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isZirkon = isZirkon;
+      selectedEntities[i].isZirkonProva = isZirkonProva;
+      selectedEntities[i].isZirkonAbove = isZirkonAbove;
+    }
     notifyListeners();
   }
 
-  selectedWorkModelBridgeUpdate({bool? isBridge}) {
-    selectedEntities!.isBridge = isBridge;
+  selectedWorkModelBridgeUpdate({List<int>? teethNumbers,bool? isBridge}) {
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isBridge = isBridge;
+    }
     notifyListeners();
   }
 
-  selectedWorkModelEmaxUpdate({bool? isEmax}) {
-    selectedEntities!.isEMax = isEmax;
+  selectedWorkModelEmaxUpdate({List<int>? teethNumbers,bool? isEmax}) {
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isEMax = isEmax;
+    }
     notifyListeners();
   }
 
-  selectedWorkModelTempUpdate({bool? isTemp}) {
-    selectedEntities!.isTemp = isTemp;
+  selectedWorkModelTempUpdate({List<int>? teethNumbers,bool? isTemp}) {
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isTemp = isTemp;
+    }
     notifyListeners();
   }
 
-  selectedWorkModelNightPlaqueUpdate({bool? isNightPlaque}) {
-    selectedEntities!.isNigthPlaque = isNightPlaque;
+  selectedWorkModelNightPlaqueUpdate({List<int>? teethNumbers,bool? isNightPlaque}) {
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isNigthPlaque = isNightPlaque;
+    }
+    notifyListeners();
+  }
+
+  selectedWorkModelNightPlaqueTypeUpdate({List<int>? teethNumbers,bool? isHard}) {
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isHard = isHard;
+    }
     notifyListeners();
   }
 
   selectedWorkModelProtezUpdate(
-      {bool? isProtez,
+      {List<int>? teethNumbers,bool? isProtez,
       int? slideAmount,
       int? kronAmount,
       bool? isRepair,
@@ -111,14 +97,16 @@ class WorkProvider extends ChangeNotifier {
       bool? isCageBottom,
       String? doldarBar,
       String? doldarFoot}) {
-    selectedEntities!.isProtez = isProtez;
-    selectedEntities!.slideAmount = slideAmount;
-    selectedEntities!.kronAmount = kronAmount;
-    selectedEntities!.isRepair = isRepair;
-    selectedEntities!.isSetBottom = isSetBottom;
-    selectedEntities!.isCageBottom = isCageBottom;
-    selectedEntities!.doldarFoot = doldarFoot;
-    selectedEntities!.doldarBar = doldarBar;
+    for(int i = 0; i<teethNumbers!.length; i++){
+      selectedEntities[i].isProtez = isProtez;
+      selectedEntities[i].slideAmount = slideAmount;
+      selectedEntities[i].kronAmount = kronAmount;
+      selectedEntities[i].isRepair = isRepair;
+      selectedEntities[i].isSetBottom = isSetBottom;
+      selectedEntities[i].isCageBottom = isCageBottom;
+      selectedEntities[i].doldarFoot = doldarFoot;
+      selectedEntities[i].doldarBar = doldarBar;
+    }
     notifyListeners();
   }
 }

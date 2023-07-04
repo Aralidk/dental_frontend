@@ -1,4 +1,5 @@
 import 'package:dental_workflow/models/http_response_model.dart';
+import 'package:dental_workflow/models/work_model.dart';
 import 'package:dental_workflow/providers/work_provider.dart';
 import 'package:dental_workflow/styles/button_styles.dart';
 import 'package:dental_workflow/views/create_work_page/widgets/bridge.dart';
@@ -34,18 +35,23 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
                 const CreateWorkHeader(),
                 const Divider(),
                 const TeethSelection(),
-                provider.selectedTeethNumber == null ? const SizedBox() :
+                provider.selectedTeethNumbers.isEmpty ? const SizedBox() :
                 Column(
                   children: [
                     MetalTile(provider: provider),
                     Zirkon(provider: provider),
-                    Bridge(),
-                    EMax(),
-                    Protez(),
-                    NightPlaque(),
-                    Temprory(),
+                    Bridge(provider: provider),
+                    EMax(provider: provider),
+                    Protez(provider: provider),
+                    NightPlaque(provider: provider),
+                    Temprory(provider: provider),
                     TextButton(onPressed: (){
-                      provider.clearTeethNumber();
+                      provider.addToModel(WorkModel(
+                        workEntities: provider.selectedEntities
+                      ));
+                      //provider.clearModel();
+                      // provider.clearTeethNumber();
+                      // provider.selectedEntities.clear();
                     }, style: fullWidthButton, child: const Text("Seçili Dişi Kaydet Ve Devam Et", style: TextStyle(color: Colors.white)))
                   ],
                 ),

@@ -11,21 +11,21 @@ class Zirkon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       leading: Checkbox(
-        value: provider.selectedEntities?.isZirkon ?? false,
+        value: provider.selectedEntities[0].isZirkon ?? false,
         checkColor: dentalBlue,
         fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {
-          provider.selectedWorkModelZirkonUpdate(isZirkon: val);
+          provider.selectedWorkModelZirkonUpdate(isZirkon: val, teethNumbers: provider.selectedTeethNumbers);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
       title: const Text("Zirkon"),
       children: [
         CheckboxListTile(
-          value: provider.selectedEntities?.isZirkonAbove ?? false,
+          value: provider.selectedEntities[0].isZirkonAbove ?? false,
           activeColor: dentalBlue,
           onChanged: (val) {
-            provider.selectedWorkModelZirkonUpdate(isZirkon: provider.selectedEntities?.isZirkon, isZirkonAbove: val, isZirkonProva: provider.selectedEntities?.isZirkonProva);
+            provider.selectedWorkModelZirkonUpdate(isZirkon: provider.selectedEntities[0].isZirkon, isZirkonAbove: val, isZirkonProva: provider.selectedEntities[0].isZirkonProva, teethNumbers: provider.selectedTeethNumbers);
           },
           checkColor: dentalBlue,
           checkboxShape:
@@ -33,10 +33,10 @@ class Zirkon extends StatelessWidget {
           title: const Text("Zirkon Üstü"),
         ),
         CheckboxListTile(
-          value:provider.selectedEntities?.isZirkonProva ?? false,
+          value:provider.selectedEntities[0].isZirkonProva ?? false,
           activeColor: dentalBlue,
           onChanged: (val) {
-            provider.selectedWorkModelZirkonUpdate(isZirkon: provider.selectedEntities?.isZirkon, isZirkonAbove:  provider.selectedEntities?.isZirkonAbove, isZirkonProva: val);
+            provider.selectedWorkModelZirkonUpdate(isZirkon: provider.selectedEntities[0].isZirkon, isZirkonAbove:  provider.selectedEntities[0].isZirkonAbove, isZirkonProva: val, teethNumbers: provider.selectedTeethNumbers);
           },
           checkColor: dentalBlue,
           checkboxShape:

@@ -84,6 +84,26 @@ class _TeethSelectionState extends State<TeethSelection> {
     return index;
   }
 
+  Color setTeethColor(List<WorkEntities>? entities, index){
+    Color returnColor = blueGrey;
+    if(entities!= null){
+     // Provider.of<WorkProvider>(context,listen: false).workModels[0].workEntities!
+     //  if(entities.where((element) =>
+     //  element.teethNumber == setTeethNumber(index)){
+     //
+     //  }
+        // if(element.isMetal ?? false){
+        //   returnColor = Colors.orange;
+        // }
+        // if(element.isZirkon ?? false){
+        //   returnColor = skyBlue;
+        // }
+
+    }
+    return returnColor;
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -108,17 +128,15 @@ class _TeethSelectionState extends State<TeethSelection> {
                       onTap: () {
                         WorkEntities workEntities =
                             WorkEntities(teethNumber: setTeethNumber(index));
-                        // WorkModel workModel =
-                        //     WorkModel(workEntities: [workEntities]);
                         Provider.of<WorkProvider>(context,listen: false).selectTeethNumber(setTeethNumber(index), workEntities);
-                        // Provider.of<WorkProvider>(context, listen: false)
-                        //     .addToModel(workModel);
                       },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: darkBlueGrey,
+                            color:
+
+                              darkBlueGrey,
                             width: 3
                           ),
                             shape: BoxShape.circle,
@@ -163,12 +181,9 @@ class _TeethSelectionState extends State<TeethSelection> {
                     const SizedBox(width: 10.0),
                     GestureDetector(
                       onTap: () {
-                        WorkEntities workEntities = WorkEntities(
-                            teethNumber: setTeethNumber(index + 17));
-                        WorkModel workModel =
-                            WorkModel(workEntities: [workEntities]);
-                        Provider.of<WorkProvider>(context, listen: false)
-                            .addToModel(workModel);
+                        WorkEntities workEntities =
+                        WorkEntities(teethNumber: setTeethNumber(index + 17));
+                        Provider.of<WorkProvider>(context,listen: false).selectTeethNumber(setTeethNumber(index + 17), workEntities);
                       },
                       child: Container(
                         width: 100,
