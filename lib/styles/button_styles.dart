@@ -9,3 +9,13 @@ ButtonStyle blueButton = TextButton.styleFrom(
     borderRadius: BorderRadius.circular(15.0)
   ),
 );
+
+ButtonStyle fullWidthButton = TextButton.styleFrom(
+  backgroundColor: darkBlue,
+ //fixedSize: const Size(200,50),
+  disabledBackgroundColor: darkBlue,
+  padding: EdgeInsets.all(8.0),
+  shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0)
+  ),
+);

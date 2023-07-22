@@ -1,5 +1,8 @@
 import 'package:dental_workflow/constants/colors.dart';
+import 'package:dental_workflow/models/work_model.dart';
+import 'package:dental_workflow/providers/work_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../styles/text_styles.dart';
 
@@ -11,6 +14,96 @@ class TeethSelection extends StatefulWidget {
 }
 
 class _TeethSelectionState extends State<TeethSelection> {
+  int setTeethNumber(int index) {
+    switch (index) {
+      case 0:
+        return 18;
+      case 1:
+        return 17;
+      case 2:
+        return 16;
+      case 3:
+        return 15;
+      case 4:
+        return 14;
+      case 5:
+        return 13;
+      case 6:
+        return 12;
+      case 7:
+        return 11;
+      case 8:
+        return 21;
+      case 9:
+        return 22;
+      case 10:
+        return 23;
+      case 11:
+        return 24;
+      case 12:
+        return 25;
+      case 13:
+        return 26;
+      case 14:
+        return 27;
+      case 15:
+        return 28;
+      case 17:
+        return 48;
+      case 18:
+        return 47;
+      case 19:
+        return 46;
+      case 20:
+        return 45;
+      case 21:
+        return 44;
+      case 22:
+        return 43;
+      case 23:
+        return 42;
+      case 24:
+        return 41;
+      case 25:
+        return 31;
+      case 26:
+        return 32;
+      case 27:
+        return 33;
+      case 28:
+        return 34;
+      case 29:
+        return 35;
+      case 30:
+        return 36;
+      case 31:
+        return 37;
+      case 32:
+        return 38;
+    }
+    return index;
+  }
+
+  Color setTeethColor(List<WorkEntities>? entities, index){
+    Color returnColor = blueGrey;
+    if(entities!= null){
+     // Provider.of<WorkProvider>(context,listen: false).workModels[0].workEntities!
+     //  if(entities.where((element) =>
+     //  element.teethNumber == setTeethNumber(index)){
+     //
+     //  }
+        // if(element.isMetal ?? false){
+        //   returnColor = Colors.orange;
+        // }
+        // if(element.isZirkon ?? false){
+        //   returnColor = skyBlue;
+        // }
+
+    }
+    return returnColor;
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,13 +122,23 @@ class _TeethSelectionState extends State<TeethSelection> {
                         ? Text("Sağ Üst", style: labelStyle)
                         : index == 8
                             ? Text("Sol Üst", style: labelStyle)
-                            : SizedBox(),
-                    SizedBox(width: 10.0),
+                            : const SizedBox(),
+                    const SizedBox(width: 10.0),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        WorkEntities workEntities =
+                            WorkEntities(teethNumber: setTeethNumber(index));
+                        Provider.of<WorkProvider>(context,listen: false).selectTeethNumber(setTeethNumber(index), workEntities);
+                      },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
+                          border: Border.all(
+                            color:
+
+                              darkBlueGrey,
+                            width: 3
+                          ),
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.cover,
@@ -54,7 +157,7 @@ class _TeethSelectionState extends State<TeethSelection> {
                               color: darkBlue,
                             ),
                           )
-                        : SizedBox(width: 3.0)
+                        : const SizedBox(width: 3.0)
                   ],
                 );
               }),
@@ -74,13 +177,21 @@ class _TeethSelectionState extends State<TeethSelection> {
                         ? Text("Sol Alt", style: labelStyle)
                         : index == 8
                             ? Text("Sağ Alt", style: labelStyle)
-                            : SizedBox(),
-                    SizedBox(width: 10.0),
+                            : const SizedBox(),
+                    const SizedBox(width: 10.0),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        WorkEntities workEntities =
+                        WorkEntities(teethNumber: setTeethNumber(index + 17));
+                        Provider.of<WorkProvider>(context,listen: false).selectTeethNumber(setTeethNumber(index + 17), workEntities);
+                      },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
+                            border: Border.all(
+                                color: darkBlueGrey,
+                                width: 3
+                            ),
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.cover,
@@ -99,7 +210,7 @@ class _TeethSelectionState extends State<TeethSelection> {
                               color: darkBlue,
                             ),
                           )
-                        : SizedBox(width: 3.0)
+                        : const SizedBox(width: 3.0)
                   ],
                 );
               }),

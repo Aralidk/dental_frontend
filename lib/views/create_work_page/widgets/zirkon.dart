@@ -1,54 +1,47 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
+import '../../../providers/work_provider.dart';
 
-class Zirkon extends StatefulWidget {
-  const Zirkon({Key? key}) : super(key: key);
+class Zirkon extends StatelessWidget {
+  WorkProvider provider;
+  Zirkon({Key? key, required this.provider}) : super(key: key);
 
-  @override
-  State<Zirkon> createState() => _ZirkonState();
-}
-
-class _ZirkonState extends State<Zirkon> {
-  bool implantAbove = false;
-  bool metalProofing = false;
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       leading: Checkbox(
-        value: false,
-        checkColor: salmonPink,
-        fillColor: MaterialStateProperty.all(salmonPink),
-        onChanged: (val) {},
+        value: provider.selectedEntities[0].isZirkon ?? false,
+        checkColor: dentalBlue,
+        fillColor: MaterialStateProperty.all(dentalBlue),
+        onChanged: (val) {
+          provider.selectedWorkModelZirkonUpdate(isZirkon: val, teethNumbers: provider.selectedTeethNumbers);
+        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
       title: const Text("Zirkon"),
       children: [
         CheckboxListTile(
-          value: implantAbove,
-          activeColor: salmonPink,
+          value: provider.selectedEntities[0].isZirkonAbove ?? false,
+          activeColor: dentalBlue,
           onChanged: (val) {
-            setState(() {
-              implantAbove = val!;
-            });
+            provider.selectedWorkModelZirkonUpdate(isZirkon: provider.selectedEntities[0].isZirkon, isZirkonAbove: val, isZirkonProva: provider.selectedEntities[0].isZirkonProva, teethNumbers: provider.selectedTeethNumbers);
           },
-          checkColor: salmonPink,
+          checkColor: dentalBlue,
           checkboxShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          title: const Text("İmplant Üstü"),
+          title: const Text("Zirkon Üstü"),
         ),
         CheckboxListTile(
-          value: metalProofing,
-          activeColor: salmonPink,
+          value:provider.selectedEntities[0].isZirkonProva ?? false,
+          activeColor: dentalBlue,
           onChanged: (val) {
-            setState(() {
-              metalProofing = val!;
-            });
+            provider.selectedWorkModelZirkonUpdate(isZirkon: provider.selectedEntities[0].isZirkon, isZirkonAbove:  provider.selectedEntities[0].isZirkonAbove, isZirkonProva: val, teethNumbers: provider.selectedTeethNumbers);
           },
-          checkColor: salmonPink,
+          checkColor: dentalBlue,
           checkboxShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          title: const Text("Metal Prova Gelsin"),
+          title: const Text("Zirkon Prova Gelsin"),
         ),
       ],
     );

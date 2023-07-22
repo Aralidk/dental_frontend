@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'providers/work_provider.dart';
 import 'route/build_route_map.dart';
 
 void main() {
+  Provider.debugCheckInvalidValueType = null;
   runApp(const MyApp());
 }
 
@@ -41,7 +43,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AppStateProvider>(create: (_) => AppStateProvider()),
+        ChangeNotifierProvider<AppStateProvider>(create: (_) => AppStateProvider()),
+        ChangeNotifierProvider<WorkProvider>(create: (_) => WorkProvider()),
       ],
       child: MaterialApp.router(
         routeInformationParser: const RoutemasterParser(),

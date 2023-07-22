@@ -1,61 +1,63 @@
+import 'package:dental_workflow/providers/work_provider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
 import '../../../styles/text_styles.dart';
 
 class Protez extends StatefulWidget {
-  const Protez({Key? key}) : super(key: key);
+  Protez({Key? key, required this.provider}) : super(key: key);
+  WorkProvider provider;
 
   @override
   State<Protez> createState() => _ProtezState();
 }
 
 class _ProtezState extends State<Protez> {
-  bool isRepair = false;
-  String slideAmount = "1";
-  List<String> slideOptions = ["1", "2", "3"];
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       leading: Checkbox(
-        value: false,
-        checkColor: salmonPink,
-        fillColor: MaterialStateProperty.all(salmonPink),
-        onChanged: (val) {},
+        value: widget.provider.selectedEntities[0].isProtez ?? false,
+        checkColor: dentalBlue,
+        fillColor: MaterialStateProperty.all(dentalBlue),
+        onChanged: (val) {
+          widget.provider.selectedWorkModelProtezUpdate(teethNumbers: widget.provider.selectedTeethNumbers, isProtez: val);
+        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
       title: const Text("Protez"),
       children: [
         CheckboxListTile(
-          value: isRepair,
-          activeColor: salmonPink,
+          value: widget.provider.selectedEntities[0].isRepair ?? false,
+          activeColor: dentalBlue,
           onChanged: (val) {
-            setState(() {
-              isRepair = val!;
-            });
+            widget.provider.selectedWorkModelProtezUpdate(teethNumbers: widget.provider.selectedTeethNumbers,
+                isProtez: widget.provider.selectedEntities[0].isProtez, isRepair:  val);
           },
-          checkColor: salmonPink,
+          checkColor: dentalBlue,
           checkboxShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           title: const Text("Tamir"),
         ),
-        isRepair
+        widget.provider.selectedEntities[0].isRepair ?? false
             ?  SizedBox(
           child: Column(
+            //TODO kroşe ilave ve diş ilave backende eklenmemis ekle ve burayı güncelle
             children: [
               CheckboxListTile(value: false, onChanged: (val){
               },
                 title: const Text("Kroşe İlave"),
-                activeColor: salmonPink,
-                checkColor: salmonPink,
+                activeColor: dentalBlue,
+                checkColor: dentalBlue,
                 checkboxShape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               ),
               CheckboxListTile(value: false, onChanged: (val){
               },
                 title: const Text("Diş İlave"),
-                activeColor: salmonPink,
-                checkColor: salmonPink,
+                activeColor: dentalBlue,
+                checkColor: dentalBlue,
                 checkboxShape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               )
@@ -76,11 +78,18 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )
                 ),
+                onChanged: (val){
+                  widget.provider.selectedWorkModelProtezUpdate(teethNumbers: widget.provider.selectedTeethNumbers,
+                  isRepair: false,
+                    isProtez: true,
+                    slideAmount: int.parse(val)
+                  );
+                },
               ),
               // DropdownButtonFormField<String>(
               //     value: slideAmount,
@@ -115,6 +124,14 @@ class _ProtezState extends State<Protez> {
               const SizedBox(height: 15),
               TextField(
                 keyboardType: TextInputType.number,
+                onChanged: (val){
+                  widget.provider.selectedWorkModelProtezUpdate(teethNumbers: widget.provider.selectedTeethNumbers,
+                      isRepair: false,
+                      isProtez: true,
+                      slideAmount: widget.provider.selectedEntities[0].kronAmount ?? 0,
+                    kronAmount: int.parse(val)
+                  );
+                },
                 decoration: InputDecoration(
                     labelStyle: labelStyle,
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -122,10 +139,11 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
-                    )
+                    ),
+
                 ),
               ),
               const SizedBox(height: 15), Text("Takım Dişi", style: labelStyle),
@@ -134,7 +152,7 @@ class _ProtezState extends State<Protez> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
-                        color: salmonPink,
+                        color: dentalBlue,
                         width: 1
                     )
                 ),
@@ -142,22 +160,39 @@ class _ProtezState extends State<Protez> {
                   children: [
                     Expanded(
                       child: CheckboxListTile(
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        value: false, onChanged: (val){
+                        value: widget.provider.selectedEntities[0].isSetBottom ?? false, onChanged: (val){
+                        widget.provider.selectedWorkModelProtezUpdate(teethNumbers:
+                        widget.provider.selectedTeethNumbers,
+                          isProtez: true,
+                          isRepair: false,
+                          kronAmount: widget.provider.selectedEntities[0].kronAmount,
+                          slideAmount: widget.provider.selectedEntities[0].slideAmount,
+                          isSetBottom: true
+                        );
                       },
                         title: const Text("Alt"),
                       ),
                     ),
                     Expanded(
-                      child: CheckboxListTile(value: false,
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                      child: CheckboxListTile(value: widget.provider.selectedEntities[0].isSetBottom  != null ?
+                      !widget.provider.selectedEntities[0].isSetBottom! : false,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         onChanged: (val){
+                          widget.provider.selectedWorkModelProtezUpdate(teethNumbers:
+                          widget.provider.selectedTeethNumbers,
+                              isProtez: true,
+                              isRepair: false,
+                              kronAmount: widget.provider.selectedEntities[0].kronAmount ?? 0,
+                              slideAmount: widget.provider.selectedEntities[0].slideAmount ?? 0,
+                              isSetBottom: false
+                          );
                         },
                         title: const Text("Üst"),
                       ),
@@ -171,7 +206,7 @@ class _ProtezState extends State<Protez> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
-                        color: salmonPink,
+                        color: dentalBlue,
                         width: 1
                     )
                 ),
@@ -179,22 +214,42 @@ class _ProtezState extends State<Protez> {
                   children: [
                     Expanded(
                       child: CheckboxListTile(
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                        value: false, onChanged: (val){
+                        value:widget.provider.selectedEntities[0].isCageBottom ?? false, onChanged: (val){
+                        widget.provider.selectedWorkModelProtezUpdate(teethNumbers:
+                        widget.provider.selectedTeethNumbers,
+                            isProtez: true,
+                            isRepair: false,
+                            kronAmount: widget.provider.selectedEntities[0].kronAmount ?? 0,
+                            slideAmount: widget.provider.selectedEntities[0].slideAmount ?? 0,
+                            isSetBottom: false,
+                          isCageBottom: true
+                        );
+
                       },
                         title: const Text("Alt"),
                       ),
                     ),
                     Expanded(
-                      child: CheckboxListTile(value: false,
-                        activeColor: salmonPink,
-                        checkColor: salmonPink,
+                      child: CheckboxListTile(value: widget.provider.selectedEntities[0].isCageBottom != null ?
+                      !widget.provider.selectedEntities[0].isCageBottom!  : false,
+                        activeColor: dentalBlue,
+                        checkColor: dentalBlue,
                         checkboxShape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         onChanged: (val){
+                          widget.provider.selectedWorkModelProtezUpdate(teethNumbers:
+                          widget.provider.selectedTeethNumbers,
+                              isProtez: true,
+                              isRepair: false,
+                              kronAmount: widget.provider.selectedEntities[0].kronAmount,
+                              slideAmount: widget.provider.selectedEntities[0].slideAmount,
+                              isSetBottom: false,
+                            isCageBottom: false
+                          );
                         },
                         title: const Text("Üst"),
                       ),
@@ -204,7 +259,19 @@ class _ProtezState extends State<Protez> {
               ),
               const SizedBox(height: 15),
               TextField(
-                keyboardType: TextInputType.number,
+                //keyboardType: TextInputType.number,
+                onChanged: (val){
+                  widget.provider.selectedWorkModelProtezUpdate(teethNumbers:
+                  widget.provider.selectedTeethNumbers,
+                      isProtez: true,
+                      isRepair: false,
+                      kronAmount: widget.provider.selectedEntities[0].kronAmount ?? 0,
+                      slideAmount: widget.provider.selectedEntities[0].slideAmount ?? 0,
+                      isSetBottom: false,
+                      isCageBottom: widget.provider.selectedEntities[0].isCageBottom ?? false,
+                    doldarBar: val,
+                  );
+                },
                 decoration: InputDecoration(
                     labelStyle: labelStyle,
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -212,7 +279,7 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )
@@ -220,7 +287,20 @@ class _ProtezState extends State<Protez> {
               ),
               const SizedBox(height: 15),
               TextField(
-                keyboardType: TextInputType.number,
+               // keyboardType: TextInputType.number,
+                onChanged: (val){
+                  widget.provider.selectedWorkModelProtezUpdate(teethNumbers:
+                  widget.provider.selectedTeethNumbers,
+                    isProtez: true,
+                    isRepair: false,
+                    kronAmount: widget.provider.selectedEntities[0].kronAmount ?? 0,
+                    slideAmount: widget.provider.selectedEntities[0].slideAmount ?? 0,
+                    isSetBottom: false,
+                    isCageBottom: widget.provider.selectedEntities[0].isCageBottom ?? false,
+                    doldarBar: widget.provider.selectedEntities[0].doldarBar ?? "",
+                    doldarFoot: val
+                  );
+                },
                 decoration: InputDecoration(
                     labelStyle: labelStyle,
                     floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -228,7 +308,7 @@ class _ProtezState extends State<Protez> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(
-                            color: salmonPink,
+                            color: dentalBlue,
                             width: 1
                         )
                     )
