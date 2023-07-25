@@ -22,54 +22,54 @@ class WorkModel {
 }
 
 class WorkEntities {
-  int? id;
-  int? teethNumber;
-  bool? isMetal;
-  bool? isMetalAbove;
-  bool? isMetalProva;
-  bool? isZirkon;
-  bool? isZirkonAbove;
-  bool? isZirkonProva;
-  bool? isBridge;
-  bool? isEMax;
-  bool? isTemp;
-  bool? isNigthPlaque;
-  bool? isHard;
-  bool? isProtez;
-  int? slideAmount;
-  int? kronAmount;
-  bool? isRepair;
-  bool? isSetBottom;
-  bool? isCageBottom;
-  String? doldarBar;
-  String? doldarFoot;
-  String? customerNote;
-  String? labNote;
+  int? id = 0;
+  int? teethNumber = 0;
+  bool? isMetal = false;
+  bool? isMetalAbove = false;
+  bool? isMetalProva = false;
+  bool? isZirkon = false;
+  bool? isZirkonAbove = false;
+  bool? isZirkonProva =false;
+  bool? isBridge = false;
+  bool? isEMax = false;
+  bool? isTemp = false;
+  bool? isNigthPlaque = false;
+  bool? isHard = false;
+  bool? isProtez = false;
+  int? slideAmount = 0;
+  int? kronAmount = 0;
+  bool? isRepair = false;
+  bool? isSetBottom = false;
+  bool? isCageBottom = false;
+  String? doldarBar = "";
+  String? doldarFoot = "";
+  String? customerNote = "";
+  String? labNote = "";
 
   WorkEntities(
-      {this.id,
-        this.teethNumber,
-        this.isMetal,
-        this.isMetalAbove,
-        this.isMetalProva,
-        this.isZirkon,
-        this.isZirkonAbove,
-        this.isZirkonProva,
-        this.isBridge,
-        this.isEMax,
-        this.isTemp,
-        this.isNigthPlaque,
-        this.isHard,
-        this.isProtez,
-        this.slideAmount,
-        this.kronAmount,
-        this.isRepair,
-        this.isSetBottom,
-        this.isCageBottom,
-        this.doldarBar,
-        this.doldarFoot,
-        this.customerNote,
-        this.labNote});
+      {this.id = 0,
+        this.teethNumber = 0,
+        this.isMetal = false,
+        this.isMetalAbove  = false,
+        this.isMetalProva  = false,
+        this.isZirkon  = false,
+        this.isZirkonAbove  = false,
+        this.isZirkonProva  = false,
+        this.isBridge  = false,
+        this.isEMax  = false,
+        this.isTemp  = false,
+        this.isNigthPlaque  = false,
+        this.isHard  = false,
+        this.isProtez  = false,
+        this.slideAmount  = 0,
+        this.kronAmount  = 0,
+        this.isRepair  = false,
+        this.isSetBottom  = false,
+        this.isCageBottom  = false,
+        this.doldarBar  ="",
+        this.doldarFoot ="",
+        this.customerNote = "",
+        this.labNote = ""});
 
   WorkEntities.fromJson(Map<String, dynamic> json) {
     id = json['id'];

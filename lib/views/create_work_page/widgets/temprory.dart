@@ -11,11 +11,11 @@ class Temprory extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ListTile(
       leading: Checkbox(
-        value:  provider.selectedEntities[0].isTemp ?? false,
+        value:  provider.type.values.elementAt(4),
         checkColor: dentalBlue,
         fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {
-          provider.selectedWorkModelTempUpdate(teethNumbers: provider.selectedTeethNumbers, isTemp: val);
+          provider.changeOperationType(val!, 'isTemp');
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),

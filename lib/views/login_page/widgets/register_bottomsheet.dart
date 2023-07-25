@@ -1,8 +1,10 @@
 import 'package:dental_workflow/services/register_controller.dart';
 import 'package:dental_workflow/widgets/bottom_sheet_pointer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import '../../../constants/colors.dart';
+import '../../../providers/app_state_provider.dart';
 import '../../../styles/button_styles.dart';
 
 TextEditingController mailController = TextEditingController();
@@ -110,6 +112,8 @@ class RegisterBottomSheet extends StatelessWidget {
                         passwordController.text)
                     .then((response) {
                   if (response.statusCode == 200) {
+                    Provider.of<AppStateProvider>(context, listen: false)
+                        .userLog(mailController.text, passwordController.text);
                     // Navigator.pop(context);
                     // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     //     content: Text("Kaydınız Başarıyla Oluşturuldu")));

@@ -84,23 +84,48 @@ class _TeethSelectionState extends State<TeethSelection> {
     return index;
   }
 
-  Color setTeethColor(List<WorkEntities>? entities, index){
-    Color returnColor = blueGrey;
-    if(entities!= null){
-     // Provider.of<WorkProvider>(context,listen: false).workModels[0].workEntities!
-     //  if(entities.where((element) =>
-     //  element.teethNumber == setTeethNumber(index)){
-     //
-     //  }
-        // if(element.isMetal ?? false){
-        //   returnColor = Colors.orange;
-        // }
-        // if(element.isZirkon ?? false){
-        //   returnColor = skyBlue;
-        // }
+  Color setTeethColor(index) {
+    Color returnColor = darkBlue;
+
+
+    if(Provider.of<WorkProvider>(context, listen: true)
+        .workModels
+        .workEntities!.isNotEmpty && Provider
+        .of<WorkProvider>(context, listen: true)
+        .workModels
+        .workEntities
+        !.where((element) => element.teethNumber == index).isNotEmpty) {
+        WorkEntities? entities = Provider
+            .of<WorkProvider>(context, listen: true)
+            .workModels
+            .workEntities
+            ?.where((element) => element.teethNumber == index)
+            .first;
+print(entities!.teethNumber!);
+        if (entities != null) {
+          if (entities.isMetal ?? false) {
+            return Colors.yellow;
+          } else if (entities.isZirkon ?? false) {
+            return skyBlue;
+          } else if (entities.isEMax ?? false) {
+            return Colors.purple;
+          } else if (entities.isTemp ?? false) {
+            return Colors.orange;
+          } else if (entities.isMetalAbove ?? false) {
+            return Colors.yellowAccent;
+          } else if (entities.isBridge ?? false) {
+            return Colors.greenAccent;
+          } else if (entities.isZirkonAbove ?? false) {
+            return Colors.indigo;
+          }
+          else{
+            return returnColor;
+          }
+        }
 
     }
-    return returnColor;
+
+      return returnColor;
 
   }
 
@@ -126,19 +151,15 @@ class _TeethSelectionState extends State<TeethSelection> {
                     const SizedBox(width: 10.0),
                     GestureDetector(
                       onTap: () {
-                        WorkEntities workEntities =
-                            WorkEntities(teethNumber: setTeethNumber(index));
-                        Provider.of<WorkProvider>(context,listen: false).selectTeethNumber(setTeethNumber(index), workEntities);
+                        Provider.of<WorkProvider>(context, listen: false)
+                            .addToEntityEnt(setTeethNumber(index));
                       },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            color:
-
-                              darkBlueGrey,
-                            width: 3
-                          ),
+                            border: Border.all(
+                                color: setTeethColor(setTeethNumber(index)),
+                                width: 3),
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.cover,
@@ -181,17 +202,15 @@ class _TeethSelectionState extends State<TeethSelection> {
                     const SizedBox(width: 10.0),
                     GestureDetector(
                       onTap: () {
-                        WorkEntities workEntities =
-                        WorkEntities(teethNumber: setTeethNumber(index + 17));
-                        Provider.of<WorkProvider>(context,listen: false).selectTeethNumber(setTeethNumber(index + 17), workEntities);
+                        Provider.of<WorkProvider>(context, listen: false)
+                            .addToEntityEnt(setTeethNumber(index + 17));
                       },
                       child: Container(
                         width: 100,
                         decoration: BoxDecoration(
                             border: Border.all(
-                                color: darkBlueGrey,
-                                width: 3
-                            ),
+                                color: setTeethColor(setTeethNumber(index +17)),
+                                width: 3),
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.cover,

@@ -11,6 +11,7 @@ class CreateWorkHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Provider.of<AppStateProvider>(context, listen: false).token);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

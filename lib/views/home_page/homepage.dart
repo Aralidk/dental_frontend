@@ -20,7 +20,15 @@ class HomePage extends StatelessWidget {
               },
               style: blueButton,
               child:
-                  const Text("İş Kayıt", style: TextStyle(color: Colors.white)))
+                  const Text("İş Kayıt", style: TextStyle(color: Colors.white))),
+        const SizedBox(height: 20),
+        TextButton(
+            onPressed: () {
+              Routemaster.of(context).push("/getAllWorks");
+            },
+            style: blueButton,
+            child:
+            const Text("İşleri Listele", style: TextStyle(color: Colors.white)))
       ],
     ),
         ));

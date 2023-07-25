@@ -10,15 +10,15 @@ class Bridge extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ListTile(
       leading: Checkbox(
-        value: provider.selectedEntities[0].isBridge ?? false,
+        value: provider.type.values.elementAt(3),
         checkColor: dentalBlue,
         fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {
-          provider.selectedWorkModelBridgeUpdate(isBridge: val, teethNumbers: provider.selectedTeethNumbers);
+          provider.changeOperationType(val!, 'isBridge');
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
-      title: const Text("Köprü"),
+      title: const Text("Ara Gövde"),
     );
   }
 }

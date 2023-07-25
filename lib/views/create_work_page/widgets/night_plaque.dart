@@ -11,11 +11,11 @@ class NightPlaque extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ExpansionTile(
       leading: Checkbox(
-        value: provider.selectedEntities[0].isNigthPlaque ?? false,
+        value: provider.isNigthPlaque,
         checkColor: dentalBlue,
         fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {
-          provider.selectedWorkModelNightPlaqueUpdate(isNightPlaque: val,teethNumbers: provider.selectedTeethNumbers);
+          //provider.changeNigthPlaque(val!);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
@@ -38,20 +38,19 @@ class NightPlaque extends StatelessWidget {
                   checkColor: dentalBlue,
                   checkboxShape:
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                  value: provider.selectedEntities[0].isHard ?? false, onChanged: (val){
-                  provider.selectedWorkModelNightPlaqueTypeUpdate(isHard: true,teethNumbers: provider.selectedTeethNumbers);
+                  value:  false, onChanged: (val){
+
                 },
                   title: const Text("Sert"),
                 ),
               ),
               Expanded(
-                child: CheckboxListTile(value: provider.selectedEntities[0].isHard != null ?  !provider.selectedEntities[0].isHard! : false,
+                child: CheckboxListTile(value: false,
                   activeColor: dentalBlue,
                   checkColor: dentalBlue,
                   checkboxShape:
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                   onChanged: (val){
-                    provider.selectedWorkModelNightPlaqueTypeUpdate(isHard: false,teethNumbers: provider.selectedTeethNumbers);
                   },
                   title: const Text("Yumuşak"),
                 ),

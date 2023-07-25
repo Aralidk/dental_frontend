@@ -10,11 +10,11 @@ class EMax extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ListTile(
       leading: Checkbox(
-        value: provider.selectedEntities[0].isEMax ?? false,
+        value:  provider.type.values.elementAt(2),
         checkColor: dentalBlue,
         fillColor: MaterialStateProperty.all(dentalBlue),
         onChanged: (val) {
-          provider.selectedWorkModelEmaxUpdate(isEmax: val, teethNumbers: provider.selectedTeethNumbers);
+          provider.changeOperationType(val!, 'isEmax');
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
