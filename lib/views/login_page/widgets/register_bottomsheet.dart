@@ -103,8 +103,8 @@ class RegisterBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: 15.0),
           TextButton(
-              onPressed: () {
-                RegisterController.Register(
+              onPressed: () async {
+                await RegisterController.Register(
                         mailController.text,
                         nameController.text,
                         surnameController.text,

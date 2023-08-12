@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class WorkModel {
   List<WorkEntities>? workEntities;
 
@@ -22,8 +24,10 @@ class WorkModel {
 }
 
 class WorkEntities {
-  int? id = 0;
+  int id =0;
   int? teethNumber = 0;
+  String? assignedUser;
+  String? workStatus;
   bool? isMetal = false;
   bool? isMetalAbove = false;
   bool? isMetalProva = false;
@@ -47,7 +51,8 @@ class WorkEntities {
   String? labNote = "";
 
   WorkEntities(
-      {this.id = 0,
+      {
+        this.id = 0,
         this.teethNumber = 0,
         this.isMetal = false,
         this.isMetalAbove  = false,
@@ -69,6 +74,8 @@ class WorkEntities {
         this.doldarBar  ="",
         this.doldarFoot ="",
         this.customerNote = "",
+        this.assignedUser,
+        this.workStatus,
         this.labNote = ""});
 
   WorkEntities.fromJson(Map<String, dynamic> json) {
@@ -95,6 +102,8 @@ class WorkEntities {
     doldarFoot = json['doldarFoot'];
     customerNote = json['customerNote'];
     labNote = json['labNote'];
+    assignedUser = json["assignedUser"];
+    workStatus = json["workStatus"];
   }
 
   Map<String, dynamic> toJson() {
@@ -122,6 +131,8 @@ class WorkEntities {
     data['doldarFoot'] = doldarFoot;
     data['customerNote'] = customerNote;
     data['labNote'] = labNote;
+    data["assignedUser"] = assignedUser;
+    data["workStatus"] = workStatus;
     return data;
   }
 }

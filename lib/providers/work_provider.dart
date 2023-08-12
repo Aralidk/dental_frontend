@@ -107,7 +107,7 @@ class WorkProvider extends ChangeNotifier {
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
         selectedMetal
-            .add(WorkEntities(teethNumber: teethNumber, isMetal: true));
+            .add(WorkEntities(teethNumber: teethNumber, isMetal: true, id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     } else if (type.values.elementAt(1)) {
       if (selectedZirkon.any((element) => element.teethNumber == teethNumber)) {
@@ -115,14 +115,14 @@ class WorkProvider extends ChangeNotifier {
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
         selectedZirkon
-            .add(WorkEntities(teethNumber: teethNumber, isZirkon: true));
+            .add(WorkEntities(teethNumber: teethNumber, isZirkon: true, id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     } else if (type.values.elementAt(2)) {
       if (selectedEmax.any((element) => element.teethNumber == teethNumber)) {
         selectedEmax
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
-        selectedEmax.add(WorkEntities(teethNumber: teethNumber, isEMax: true));
+        selectedEmax.add(WorkEntities(teethNumber: teethNumber, isEMax: true, id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     } else if (type.values.elementAt(3)) {
       if (selectedBridge.any((element) => element.teethNumber == teethNumber)) {
@@ -130,14 +130,14 @@ class WorkProvider extends ChangeNotifier {
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
         selectedBridge
-            .add(WorkEntities(teethNumber: teethNumber, isBridge: true));
+            .add(WorkEntities(teethNumber: teethNumber, isBridge: true, id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     } else if (type.values.elementAt(4)) {
       if (selectedTemp.any((element) => element.teethNumber == teethNumber)) {
         selectedTemp
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
-        selectedTemp.add(WorkEntities(teethNumber: teethNumber, isTemp: true));
+        selectedTemp.add(WorkEntities(teethNumber: teethNumber, isTemp: true, id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     } else if (type.values.elementAt(5)) {
       if (implantAbove.any((element) => element.teethNumber == teethNumber)) {
@@ -145,7 +145,7 @@ class WorkProvider extends ChangeNotifier {
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
         implantAbove
-            .add(WorkEntities(teethNumber: teethNumber, isMetalAbove: true));
+            .add(WorkEntities(teethNumber: teethNumber, isMetalAbove: true,  id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     } else if (type.values.elementAt(6)) {
       if (zirkonAbove.any((element) => element.teethNumber == teethNumber)) {
@@ -153,7 +153,7 @@ class WorkProvider extends ChangeNotifier {
             .removeWhere((element) => element.teethNumber == teethNumber);
       } else {
         zirkonAbove
-            .add(WorkEntities(teethNumber: teethNumber, isMetalAbove: true));
+            .add(WorkEntities(teethNumber: teethNumber, isMetalAbove: true, id:  DateTime.now().microsecondsSinceEpoch.toInt()));
       }
     }
     notifyListeners();

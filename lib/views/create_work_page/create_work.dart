@@ -192,7 +192,8 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
                           isCageBottom: provider.protezDetails.values.elementAt(
                               4),
                           doldarBar: provider.protezDetails.values.elementAt(5),
-                          doldarFoot: provider.protezDetails.values.elementAt(6)
+                          doldarFoot: provider.protezDetails.values.elementAt(6),
+                          id:  DateTime.now().microsecondsSinceEpoch.toInt()
                       ));
                     }
                     if(provider.isNigthPlaque){
@@ -201,12 +202,14 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
                               0),
                           isHard: provider.nightPlaqueDetails.values.elementAt(
                               1),
+                          id:  DateTime.now().microsecondsSinceEpoch.toInt()
                       ));
                     }
-                      WorkController.createWork(provider.workModels,
+                      await WorkController.createWork(provider.workModels,
                             token)
                         .then((value) {
                       if (value.isSuccessful!) {
+                        provider.workModels.workEntities!.clear();
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text("İş Kaydedildi")));
                       } else {
