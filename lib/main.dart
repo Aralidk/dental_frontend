@@ -1,4 +1,5 @@
 import 'package:dental_workflow/providers/app_state_provider.dart';
+import 'package:dental_workflow/providers/user_detail_provider.dart';
 import 'package:dental_workflow/route/route_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider<AppStateProvider>(create: (_) => AppStateProvider()),
         ChangeNotifierProvider<WorkProvider>(create: (_) => WorkProvider()),
+        ChangeNotifierProvider<UserDetailProvider>(create: (_) => UserDetailProvider()),
       ],
       child: MaterialApp.router(
         routeInformationParser: const RoutemasterParser(),
