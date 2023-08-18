@@ -30,6 +30,11 @@ class Users extends StatelessWidget {
                 title :Text(allUsers.firstName! + allUsers.lastName!));
           },);
         }
+        else if(!snapshot.hasData){
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
         else{
           return const Text("hata");
         }

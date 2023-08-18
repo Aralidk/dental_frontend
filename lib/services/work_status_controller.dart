@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../constants/urls.dart';
-import '../../models/http_response_model.dart';
+import '../constants/urls.dart';
+import '../models/http_response_model.dart';
 import 'package:http/http.dart' as http;
 
-class UserController {
-  static Future<HTTPResponse> getAllUsers() async {
+class WorkStatusController{
+
+  static Future<HTTPResponse> getWorkStatus(int workId) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     Map<String, String> headers = {
@@ -15,7 +16,7 @@ class UserController {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}',
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/auth/users");
+    var url = Uri.parse("${apiMobileURL}api/v1/status/get/$workId/status");
     var response = await http.get(url, headers: headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
@@ -29,7 +30,8 @@ class UserController {
     }
   }
 
-  static Future<HTTPResponse> getRoles() async {
+
+  static Future<HTTPResponse> getAllStatus() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     Map<String, String> headers = {
@@ -37,7 +39,7 @@ class UserController {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}',
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/auth/user/roles");
+    var url = Uri.parse("${apiMobileURL}api/v1/status/get/work-status");
     var response = await http.get(url, headers: headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
@@ -51,7 +53,7 @@ class UserController {
     }
   }
 
-  static Future<HTTPResponse> updateRole(String role, int id) async{
+  static Future<HTTPResponse> updateWorkStatus(String status, int id) async{
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
@@ -60,7 +62,7 @@ class UserController {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}'
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/auth/user/$id/update-role?role=$role");
+    var url = Uri.parse("${apiMobileURL}api/v1/status/update/$id/status?status=$status");
     var response = await http.put(url,headers:headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200){
@@ -72,9 +74,7 @@ class UserController {
 
   }
 
-  static Future<HTTPResponse> workAssignToUser(String role, workid, String email,
-      String lastName, String firstName, int id, String department
-      ) async{
+  static Future<HTTPResponse> filterBystatus(String status) async{
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
@@ -83,17 +83,9 @@ class UserController {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}'
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/create-work/work-list/$workid/assign");
-    var body = json.encode({
-      "id" : id,
-      "firstName": firstName,
-      "lastName": lastName,
-      "email" : email,
-      "password": "",
-      "department" : department,
-      "role": role,
-    });
-    var response = await http.put(url,headers:headers, body: body);
+    var url = Uri.parse("${apiMobileURL}api/v1/create-work/work-list/filter");
+    var body = json.encode({"status" : status});
+    var response = await http.put(url,body: body,headers:headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200){
       return HTTPResponse(true, statusCode: 200,data: responseBody);

@@ -1,13 +1,20 @@
 import 'package:dental_workflow/models/all_users_model.dart';
 import 'package:dental_workflow/providers/user_detail_provider.dart';
+import 'package:dental_workflow/route/route_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:routemaster/routemaster.dart';
 
 import '../users/user_controller.dart';
 
-class UserDetail extends StatelessWidget {
+class UserDetail extends StatefulWidget {
   const UserDetail({super.key});
 
+  @override
+  State<UserDetail> createState() => _UserDetailState();
+}
+
+class _UserDetailState extends State<UserDetail> {
   @override
   Widget build(BuildContext context) {
     AllUsers allUser =
@@ -43,7 +50,9 @@ class UserDetail extends StatelessWidget {
                                         RadioListTile(
                                           value: snapshot.data.data[0],
                                           groupValue: Provider.of<UserDetailProvider>(context).userRole ?? allUser.role,
-                                          onChanged: (val) {
+                                          onChanged: (val) async {
+                                            await UserController.updateRole(snapshot.data.data[0]
+                                                .toString(), allUser.id!);
                                             Provider.of<UserDetailProvider>(context,listen: false).changeRole(val!);
                                           },
                                           title: Text(snapshot.data.data[0]),
@@ -53,16 +62,19 @@ class UserDetail extends StatelessWidget {
                                             value: snapshot.data.data[1]
                                                 .toString(),
                                             groupValue: Provider.of<UserDetailProvider>(context).userRole ?? allUser.role,
-                                            onChanged: (val) {
+                                            onChanged: (val)  async{
+                                              await UserController.updateRole(snapshot.data.data[1]
+                                                  .toString(), allUser.id! );
                                               Provider.of<UserDetailProvider>(context, listen: false).changeRole(val!);
-                                              print(val);
                                             }),
                                         RadioListTile(
                                             title: Text(snapshot.data.data[2]),
                                             value: snapshot.data.data[2]
                                                 .toString(),
                                             groupValue: Provider.of<UserDetailProvider>(context).userRole ?? allUser.role,
-                                            onChanged: (val) {
+                                            onChanged: (val) async {
+                                              await UserController.updateRole(snapshot.data.data[2]
+                                                  .toString(), allUser.id!);
                                               Provider.of<UserDetailProvider>(context, listen: false).changeRole(val!);
                                             }),
                                       ],
@@ -77,9 +89,11 @@ class UserDetail extends StatelessWidget {
                           ),
                         );
                       },
-                    );
+                    ).whenComplete((){
+                      Routemaster.of(context).push(getAllUsers);
+                    });
                   },
-                  title: Text("Rol - Yetki : ${allUser.role}")),
+                  title: Text("Rol - Yetki : ${allUser.role}", textAlign: TextAlign.center,)),
               Text("Kullanıcı Adı : ${allUser.username}"),
               Text("Hesap Aktif : ${allUser.accountNonExpired.toString()}"),
             ],
