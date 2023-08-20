@@ -1,3 +1,4 @@
+import 'package:dental_workflow/modules/confirm_new_users/view/confirm_view.dart';
 import 'package:dental_workflow/route/route_paths.dart';
 import 'package:dental_workflow/views/create_work_page/create_work.dart';
 import 'package:dental_workflow/views/getAllWorks/get_all_works.dart';
@@ -17,5 +18,6 @@ RouteMap Routes = RouteMap(
     getAllWorks: (_) => const MaterialPage(child: GetAllWorks()),
     getAllUsers : (_) => const MaterialPage(child: Users()),
     userDetail : (_) => const MaterialPage(child: UserDetail()),
+    waitingConfirmation : (_) => const MaterialPage(child: UnconfirmedUsersView())
   },
 );

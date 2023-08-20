@@ -16,7 +16,6 @@ class GetAllWorks extends StatelessWidget {
             return ListView.builder(
                 itemCount: snapshot.data.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  print(snapshot.data.data[index]["workEntities"][0]["id"]);
                   return ExpansionTile(
                       title: Text(snapshot.data.data[index]["id"].toString()),
                       children:
@@ -43,6 +42,7 @@ class WorkTeethDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(entities.metal);
     return Column(
       children: [
         Divider(),

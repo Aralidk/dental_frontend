@@ -17,7 +17,9 @@ class UserController {
     };
     var url = Uri.parse("${apiMobileURL}api/v1/auth/users");
     var response = await http.get(url, headers: headers);
+    print("aa");
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
+    print(responseBody);
     if (response.statusCode == 200) {
       return HTTPResponse(true,
           message: "Succes", statusCode: 200, data: responseBody);

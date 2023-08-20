@@ -1,6 +1,5 @@
 import 'package:dental_workflow/constants/colors.dart';
 import 'package:dental_workflow/models/work_model.dart';
-import 'package:dental_workflow/providers/app_state_provider.dart';
 import 'package:dental_workflow/providers/work_provider.dart';
 import 'package:dental_workflow/styles/button_styles.dart';
 import 'package:dental_workflow/views/create_work_page/widgets/bridge.dart';
@@ -42,7 +41,6 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
               TextButton(
                   onPressed: () {
                     provider.addEntityToModel();
-                    print("asdsa");
                   },
                   style: fullWidthButton,
                   child: const Text("Seçili Dişleri Onayla",
@@ -125,7 +123,7 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
                             ],
                           ),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                   Protez(provider: provider),
                   // NightPlaque(provider: provider),
                   MetalTile(provider: provider),
@@ -217,7 +215,6 @@ class _CreateWorkPageState extends State<CreateWorkPage> {
                             const SnackBar(content: Text("Hata Oluştu")));
                       }
                     });
-                    print(provider.workModels.workEntities!.length);
                     },
                   style: fullWidthButton,
                   child: const Text("Kaydet",

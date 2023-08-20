@@ -16,8 +16,9 @@ class AppStateProvider extends ChangeNotifier{
         token = response.data["token"];
         loggedIn = true;
         user = UserModel.fromJson(response.data);
+        preferences.setString("userName", response.data["firstName"] + response.data["lastName"]);
+        preferences.setString("role", response.data["role"]);
         preferences.setString("token", token!);
-        preferences.setBool("loggedIn", true);
       }
     });
     return loggedIn;

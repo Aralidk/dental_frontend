@@ -18,6 +18,7 @@ class WorkController{
     List<Map<String, dynamic>> workEntitiesJsonList = workModel.workEntities!
         .map((workEntity) => workEntity.toJson())
         .toList();
+    print(workEntitiesJsonList);
     var body =
     json.encode(
       {
@@ -39,20 +40,23 @@ class WorkController{
   static Future<HTTPResponse> getAllWorks() async {
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
+    print(preferences.getString('token'));
     Map<String, String> headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}',
     };
-    print(preferences.getString('token'));
     var url = Uri.parse("${apiMobileURL}api/v1/create-work/work-list");
+    print("here");
     var response = await http.get(url, headers: headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
+    print("response");
     if (response.statusCode == 200) {
+      print("succes");
       return HTTPResponse(true,
           message: "Succes", statusCode: 200, data: responseBody);
     } else {
+      print(responseBody);
       return HTTPResponse(false,
           message: "Error",
           statusCode: 400,
