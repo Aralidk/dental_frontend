@@ -50,7 +50,15 @@ class HomePage extends StatelessWidget {
                 },
                 style: blueButton,
                 child:
-                const Text("Onay Bekleyen Kullanıcılar", style: TextStyle(color: Colors.white)))
+                const Text("Onay Bekleyen Kullanıcılar", style: TextStyle(color: Colors.white))),
+            const SizedBox(height: 20),
+            TextButton(
+                onPressed: () {
+                  Routemaster.of(context).push(unfinishedWorks);
+                },
+                style: blueButton,
+                child:
+                const Text("Tamamlanmamıs İşler", style: TextStyle(color: Colors.white)))
           ],
         )
             //: const  SizedBox()

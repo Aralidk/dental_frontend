@@ -62,7 +62,7 @@ class UserController {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}'
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/auth/user/$id/update-role?role=$role");
+    var url = Uri.parse("${apiMobileURL}api/v1/auth/user/update-role/${id}?role=${role}");
     var response = await http.put(url,headers:headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200){

@@ -55,6 +55,7 @@ class AllWorkEntitiesModel{
   bool? repair;
   bool? setBottom;
   bool? cageBottom;
+  double? price;
 
   AllWorkEntitiesModel(
   {this.id,
@@ -81,7 +82,9 @@ class AllWorkEntitiesModel{
   this.protez,
   this.repair,
   this.setBottom,
-  this.cageBottom});
+  this.cageBottom,
+  this.price
+  });
 
   AllWorkEntitiesModel.fromJson(Map<String, dynamic> json) {
   id = json['id'];
@@ -109,6 +112,7 @@ class AllWorkEntitiesModel{
   repair = json['repair'];
   setBottom = json['setBottom'];
   cageBottom = json['cageBottom'];
+  price = json["price"];
   }
 
   Map<String, dynamic> toJson() {
@@ -138,6 +142,7 @@ class AllWorkEntitiesModel{
   data['repair'] = repair;
   data['setBottom'] = setBottom;
   data['cageBottom'] = cageBottom;
+  data["price"] = price;
   return data;
   }
 

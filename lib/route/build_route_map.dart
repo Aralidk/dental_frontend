@@ -7,6 +7,7 @@ import 'package:dental_workflow/views/users/users_view.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import '../views/home_page/homepage.dart';
+import '../views/unfinished_works/unfinished_works_view.dart';
 import '../views/user_detail/user_detail_view.dart';
 
 RouteMap Routes = RouteMap(
@@ -18,6 +19,7 @@ RouteMap Routes = RouteMap(
     getAllWorks: (_) => const MaterialPage(child: GetAllWorks()),
     getAllUsers : (_) => const MaterialPage(child: Users()),
     userDetail : (_) => const MaterialPage(child: UserDetail()),
-    waitingConfirmation : (_) => const MaterialPage(child: UnconfirmedUsersView())
+    waitingConfirmation : (_) => const MaterialPage(child: UnconfirmedUsersView()),
+    unfinishedWorks: (_)=> const MaterialPage(child: UnfinishedWorksView()),
   },
 );

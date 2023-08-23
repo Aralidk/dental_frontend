@@ -16,6 +16,8 @@ class WorkStatusController{
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}',
     };
+
+     print(preferences.getString('token'));
     var url = Uri.parse("${apiMobileURL}api/v1/status/get/$workId/status");
     var response = await http.get(url, headers: headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
@@ -62,11 +64,14 @@ class WorkStatusController{
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}'
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/status/update/$id/status?status=$status");
-    var response = await http.put(url,headers:headers);
-    var responseBody = json.decode(utf8.decode(response.bodyBytes));
+    var url = Uri.parse("${apiMobileURL}api/v1/status/update/$id");
+    var body = json.encode({
+      "status" : status
+    });
+    var response = await http.put(url,headers:headers, body: body);
+   // var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200){
-      return HTTPResponse(true, statusCode: 200,data: responseBody);
+      return HTTPResponse(true, statusCode: 200,data: response.body);
     }
     else{
       return HTTPResponse(true, statusCode: 200,data: null);

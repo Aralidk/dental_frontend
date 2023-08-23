@@ -38,8 +38,8 @@ class ConfirmService{
       'Accept': 'application/json',
       'Authorization': 'Bearer ${preferences.getString('token')}'
     };
-    var url = Uri.parse("${apiMobileURL}api/v1/auth/user/$id/update-confirm");
-    var body = json.encode({"confirmStatus" : status});
+    var url = Uri.parse("${apiMobileURL}api/v1/auth/user/update-confirm/$id");
+    var body = json.encode(status);
     var response = await http.put(url,body: body,headers:headers);
     var responseBody = json.decode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200){
